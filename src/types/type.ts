@@ -2,6 +2,7 @@ export interface Office {
     id: number;
     price: number;
     duration: number;
+    address: string;
     name: string;
     slug: string;
     city: City;
@@ -27,7 +28,7 @@ export interface City {
     slug: string;
     photo: string;
     office_spaces_count: number;
-    officeSpace: Office[];
+    officeSpaces: Office[];
 }
 
 export interface BookingDetails {
