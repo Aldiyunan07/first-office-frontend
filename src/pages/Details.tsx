@@ -4,19 +4,20 @@ import { useEffect, useState } from 'react';
 import { Office } from '../types/type';
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { config } from '../config';
 
 export default function Details() {
     const { slug } = useParams<{ slug: string }>();
     const [office, setOffice] = useState<Office | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const baseURL = 'http://127.0.0.1:8000/storage';
+    const baseURL = `${config.baseURL}/storage`;
 
     useEffect(() => {
         axios
-            .get(`http://127.0.0.1:8000/api/office/${slug}`, {
+            .get(`${config.baseURL}/api/office/${slug}`, {
                 headers: {
-                    'X-API-KEY': 'hdvckhgjdvchgsdv',
+                    'X-API-KEY': `${config.apiKey}`,
                 },
             })
             .then((response) => {

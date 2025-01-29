@@ -4,6 +4,7 @@ import { Office } from '../types/type';
 import axios from 'axios';
 import { z } from 'zod';
 import { bookingSchema } from '../types/validationBooking';
+import { config } from '../config'; // Import config
 
 export default function BookOffice() {
     const { slug } = useParams<{ slug: string }>();
@@ -23,13 +24,13 @@ export default function BookOffice() {
     const [formErrors, setFormErrors] = useState<z.ZodIssue[]>([]);
     const [uniqueCode, setUniqueCode] = useState<number>(0);
     const [totalAmountWithUniqueCode, setTotalAmountWithUniqueCode] = useState<number>(0);
-    const baseURL = 'http://127.0.0.1:8000/storage';
+    const baseURL = `${config.baseURL}/storage`;
 
     useEffect(() => {
         axios
-            .get(`http://127.0.0.1:8000/api/office/${slug}`, {
+            .get(`${config.baseURL}/api/office/${slug}`, {
                 headers: {
-                    'X-API-KEY': 'hdvckhgjdvchgsdv',
+                    'X-API-KEY': `${config.apiKey}`,
                 },
             })
             .then((response) => {
@@ -82,13 +83,13 @@ export default function BookOffice() {
         console.log('Form data is valid. Submitting ...', formData);
         try {
             const response = await axios.post(
-                'http://127.0.0.1:8000/api/booking-transaction',
+                `${config.baseURL}/api/booking-transaction`,
                 {
                     ...formData,
                 },
                 {
                     headers: {
-                        'X-API-KEY': 'hdvckhgjdvchgsdv',
+                        'X-API-KEY': `${config.apiKey}`,
                     },
                 }
             );

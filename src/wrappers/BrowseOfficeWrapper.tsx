@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import OfficeCard from '../components/OfficeCard';
 import { Office } from '../types/type';
 import axios from 'axios';
+import { config } from '../config';
 
 export default function BrowseOfficeWrapper() {
     const [offices, setOffices] = useState<Office[]>([]);
@@ -10,9 +11,9 @@ export default function BrowseOfficeWrapper() {
 
     useEffect(() => {
         axios
-            .get('http://127.0.0.1:8000/api/offices', {
+            .get(`${config.baseURL}/api/offices`, {
                 headers: {
-                    'X-API-KEY': 'hdvckhgjdvchgsdv',
+                    'X-API-KEY': `${config.apiKey}`,
                 },
             })
             .then((response) => {

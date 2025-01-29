@@ -4,19 +4,20 @@ import { City } from '../types/type';
 import axios from 'axios';
 import OfficeCard from '../components/OfficeCard';
 import NavbarWrapper from '../wrappers/NavbarWrapper';
+import { config } from '../config';
 
 export default function CityDetails() {
     const { slug } = useParams<{ slug: string }>();
     const [city, setCity] = useState<City | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const baseURL = 'http://127.0.0.1:8000/storage';
+    const baseURL = `${config.baseURL}/storage`;
 
     useEffect(() => {
         axios
-            .get(`http://127.0.0.1:8000/api/city/${slug}`, {
+            .get(`${config.baseURL}/api/city/${slug}`, {
                 headers: {
-                    'X-API-KEY': 'hdvckhgjdvchgsdv',
+                    'X-API-KEY': `${config.apiKey}`,
                 },
             })
             .then((response) => {

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { City } from '../types/type';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { config } from '../config';
 
 export default function BrowseCityWrapper() {
     const [cities, setCities] = useState<City[]>([]);
@@ -14,9 +15,9 @@ export default function BrowseCityWrapper() {
 
     useEffect(() => {
         axios
-            .get('http://127.0.0.1:8000/api/cities', {
+            .get(`${config.baseURL}/api/cities`, {
                 headers: {
-                    'X-API-KEY': 'hdvckhgjdvchgsdv',
+                    'X-API-KEY': `${config.apiKey}`,
                 },
             })
             .then((response) => {
