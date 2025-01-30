@@ -5,6 +5,7 @@ import axios from 'axios';
 import OfficeCard from '../components/OfficeCard';
 import NavbarWrapper from '../wrappers/NavbarWrapper';
 import { config } from '../config';
+import apiClient from '../services/apiService';
 
 export default function CityDetails() {
     const { slug } = useParams<{ slug: string }>();
@@ -14,12 +15,8 @@ export default function CityDetails() {
     const baseURL = `${config.baseURL}/storage`;
 
     useEffect(() => {
-        axios
-            .get(`${config.baseURL}/api/city/${slug}`, {
-                headers: {
-                    'X-API-KEY': `${config.apiKey}`,
-                },
-            })
+        apiClient
+            .get(`/api/city/${slug}`)
             .then((response) => {
                 setCity(response.data.data);
                 setLoading(false);

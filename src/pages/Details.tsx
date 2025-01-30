@@ -5,6 +5,7 @@ import { Office } from '../types/type';
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { config } from '../config';
+import apiClient from '../services/apiService';
 
 export default function Details() {
     const { slug } = useParams<{ slug: string }>();
@@ -14,12 +15,8 @@ export default function Details() {
     const baseURL = `${config.baseURL}/storage`;
 
     useEffect(() => {
-        axios
-            .get(`${config.baseURL}/api/office/${slug}`, {
-                headers: {
-                    'X-API-KEY': `${config.apiKey}`,
-                },
-            })
+        apiClient
+            .get(`/api/office/${slug}`)
             .then((response) => {
                 setOffice(response.data.data);
                 setLoading(false);

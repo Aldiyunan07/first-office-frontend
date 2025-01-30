@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Office } from '../types/type';
+import { config } from '../config';
 
 export default function OfficeCard({ office }: OfficeCardProps) {
-    const baseURL = 'http://127.0.0.1:8000/storage';
+    const baseURL = `${config.baseURL}/storage`;
     return (
         <>
             <Link to={`/office/${office.slug}`}>

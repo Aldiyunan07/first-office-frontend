@@ -1,7 +1,8 @@
+import { config } from "../config";
 import { City } from "../types/type";
 
 export default function CityCard({city}: CityCardProps) {
-    const baseURL = "http://127.0.0.1:8000/storage";
+    const baseURL = `${config.baseURL}/storage`;
     return (
         <div className="card">
             <div className="relative flex shrink-0 w-[230px] h-[300px] rounded-[20px] overflow-hidden">

@@ -5,6 +5,7 @@ import { viewBookingSchema } from '../types/validationBooking';
 import axios from 'axios';
 import NavbarWrapper from '../wrappers/NavbarWrapper';
 import { config } from '../config'; // Import config
+import apiClient from '../services/apiService';
 
 export default function CheckBooking() {
     const [formData, setFormData] = useState({
@@ -37,16 +38,11 @@ export default function CheckBooking() {
         setIsLoading(true);
 
         try {
-            const response = await axios.post(
-                `${config.baseURL}/api/check-booking`,
+            const response = await apiClient.post(
+                `/api/check-booking`,
                 {
                     ...formData,
                 },
-                {
-                    headers: {
-                        'X-API-KEY': config.apiKey,
-                    },
-                }
             );
             setBookingDetails(response.data.data);
         } catch (error: unknown) {

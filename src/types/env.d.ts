@@ -1,7 +1,7 @@
 declare namespace NodeJS {
     interface ImportMetaEnv {
-        readonly VITE_APP_API_URL: string;
-        readonly VITE_APP_API_KEY: string;
+        readonly VITE_REACT_API_URL: string;
+        readonly VITE_REACT_API_KEY: string;
     }
 
     interface ImportMeta {

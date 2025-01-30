@@ -5,6 +5,7 @@ import axios from 'axios';
 import { z } from 'zod';
 import { bookingSchema } from '../types/validationBooking';
 import { config } from '../config'; // Import config
+import apiClient from '../services/apiService';
 
 export default function BookOffice() {
     const { slug } = useParams<{ slug: string }>();
@@ -27,12 +28,8 @@ export default function BookOffice() {
     const baseURL = `${config.baseURL}/storage`;
 
     useEffect(() => {
-        axios
-            .get(`${config.baseURL}/api/office/${slug}`, {
-                headers: {
-                    'X-API-KEY': `${config.apiKey}`,
-                },
-            })
+        apiClient
+            .get(`/api/office/${slug}`)
             .then((response) => {
                 console.log('Office data fetched successfully:', response.data.data);
                 setOffice(response.data.data);
@@ -82,15 +79,10 @@ export default function BookOffice() {
 
         console.log('Form data is valid. Submitting ...', formData);
         try {
-            const response = await axios.post(
-                `${config.baseURL}/api/booking-transaction`,
+            const response = await apiClient.post(
+                `/api/booking-transaction`,
                 {
                     ...formData,
-                },
-                {
-                    headers: {
-                        'X-API-KEY': `${config.apiKey}`,
-                    },
                 }
             );
 
