@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { config } from '../config';
+import NavbarWrapper from '../wrappers/NavbarWrapper';
 
 export default function SuccessBooking() {
     const location = useLocation();
@@ -7,6 +8,7 @@ export default function SuccessBooking() {
     const baseURL = `${config.baseURL}/storage`;
     return (
         <>
+            <NavbarWrapper/>
             <section className="flex flex-1 py-10">
                 <div className="flex flex-col w-[450px] m-auto rounded-[20px] border border-[#E0DEF7] p-[30px] gap-[30px] bg-white">
                     <div className="flex items-center gap-4">
