@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { City } from '../types/type';
-import axios from 'axios';
 import OfficeCard from '../components/OfficeCard';
 import NavbarWrapper from '../wrappers/NavbarWrapper';
 import { config } from '../config';
