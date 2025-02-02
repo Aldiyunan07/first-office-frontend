@@ -2,7 +2,6 @@ import { Link, useParams } from 'react-router-dom';
 import NavbarWrapper from '../wrappers/NavbarWrapper';
 import { useEffect, useState } from 'react';
 import { Office } from '../types/type';
-import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { config } from '../config';
 import apiClient from '../services/apiService';
